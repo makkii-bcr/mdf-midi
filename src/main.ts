@@ -1,28 +1,35 @@
+import * as AudioBufferLooper from "./audio-buffer-looper";
+
+declare global {
+  interface Window {
+    webkitAudioContext: typeof AudioContext;
+  }
+}
+
 export default class MdfMidi {
-  isInit = false;
   audioCtx: AudioContext;
 
-  constructor(param) {
+  constructor(param?: { audioContext: AudioContext } | null) {
     if (param instanceof Object) {
       this.audioCtx = param.audioContext;
     }
-  }
 
-  init() {
     if (this.audioCtx == null) {
       this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
-    this.isInit = true;
+    AudioBufferLooper.init(this.audioCtx);
   }
 
   play() {
-    if (!this.isInit) {
-      this.init();
-    }
     this.audioCtx.resume();
-    const o = this.audioCtx.createOscillator();
-    o.connect(this.audioCtx.destination);
-    o.start(0);
-    setTimeout(() => o.stop(), 2000);
+    AudioBufferLooper.startLoop();
+  }
+
+  stop() {
+    AudioBufferLooper.stopLoop();
+  }
+
+  noteOn(key: number) {
+    AudioBufferLooper.noteOn(key);
   }
 }

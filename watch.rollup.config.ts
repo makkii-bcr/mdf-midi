@@ -1,14 +1,15 @@
 import typescript from "rollup-plugin-typescript";
+import { terser } from "rollup-plugin-terser";
 import serve from "rollup-plugin-serve";
 import livereload from "rollup-plugin-livereload";
+import webWorkerLoader from "rollup-plugin-web-worker-loader";
 import path from "path";
 
 function url() {
   return {
     name: "localserver",
     generateBundle() {
-      console.log("http://localhost:10001/examples/01_basic.html");
-      console.log("http://localhost:10001/examples/02_ex2.html");
+      console.log("http://localhost:10001/examples/index.html");
     },
   };
 }
@@ -24,7 +25,7 @@ export default {
     include: [
       path.resolve("**", "**.ts"),
       path.resolve("**", "**.js"),
-      path.resolve("**", "**.html"),
+      path.resolve("examples", "**", "**.html"),
     ],
     exclude: path.resolve("node_modules", "**", "*.js"),
     chokidar: {
@@ -32,7 +33,11 @@ export default {
     },
   },
   plugins: [
+    webWorkerLoader({
+      sourcemap: true,
+    }),
     typescript(),
+    // terser(), // minify
     serve(""),
     livereload(),
     url(),

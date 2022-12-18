@@ -9,6 +9,7 @@
     <h3>example 2</h3>
     <button id="play">Play</button>
     <button id="stop">Stop</button><br>
+    <button id="key1">key1</button><br>
     <script>
         var mdf;
         window.addEventListener("load", function () {
@@ -19,6 +20,9 @@
         });
         document.getElementById("stop").addEventListener("click", function () {
             mdf.stop();
+        });
+        document.getElementById("key1").addEventListener("click", function () {
+            mdf.noteOn(41);
         });
     </script>
 </body>
