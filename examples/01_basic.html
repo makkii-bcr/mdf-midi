@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <script src="../dist/mdfmidi.js"></script>
+</head>
+
+<body>
+    <h1>MDF Midi</h1>
+    <h3>basic example</h3>
+    <button id="play">Play</button>
+    <button id="stop">Stop</button><br>
+    <script>
+        var mdf;
+        window.addEventListener("load", function () {
+            mdf = new MdfMidi();
+        });
+        document.getElementById("play").addEventListener("click", function () {
+            mdf.play();
+        });
+        document.getElementById("stop").addEventListener("click", function () {
+            mdf.stop();
+        });
+    </script>
+</body>
+
+</html>
