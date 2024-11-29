@@ -1,7 +1,10 @@
 import MainWorker from "web-worker:./main-worker";
 
-let intervalSec = 0.016; // create AudioBuffer interval seconds
-let reserveBufSec = 0.100; // reserve AudioBufferSourceNode seconds
+//let intervalSec = 0.016; // create AudioBuffer interval seconds
+//let reserveBufSec = 0.100; // reserve AudioBufferSourceNode seconds
+let intervalSec = 0.200; // create AudioBuffer interval seconds
+let reserveBufSec = 1.000; // reserve AudioBufferSourceNode seconds
+
 let reserveBufCnt = 1 / intervalSec * reserveBufSec;
 let audioStartPosSec = 0;
 let audioStartAddSec = 0;

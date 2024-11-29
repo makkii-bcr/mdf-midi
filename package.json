@@ -4,6 +4,7 @@
   "description": "Midi Player library on Browser",
   "main": "mdfmidi.js",
   "scripts": {
+    "start": "npm i && npm run watch",
     "build": "rollup -c",
     "build:map": "rollup -cm",
     "watch": "rollup -mw -c watch.rollup.config.ts",

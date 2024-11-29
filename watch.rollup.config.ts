@@ -38,7 +38,10 @@ export default {
     }),
     typescript(),
     // terser(), // minify
-    serve(""),
+    serve({
+      open: true,
+      openPage: '/examples/index.html'
+    }),
     livereload(),
     url(),
   ],
